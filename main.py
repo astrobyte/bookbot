@@ -1,3 +1,5 @@
+import sys
+from stats import get_num_words
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
@@ -8,13 +10,9 @@ def main():
     print(f"--- Begin report of {book_path} ---")
     print(f"{num_words} words found in the document")
     for item in char_list:
-        print(f"The '{item['char']}' character was found {item['num']} times")
+        print(f"{item['char']}: {item['num']}")
     print(f"--- End report ---")
 
-
-def get_num_words(text):
-    words = text.split()
-    return len(words)
 
 
 def get_chars_dict(text):
@@ -37,7 +35,7 @@ def get_book_text(path):
             return f.read()
     except FileNotFoundError:
         print(f"Error: The file at {path} was not found.")
-        exit(1)
+        sys.exit(1)
 
 
 main()
